@@ -22,13 +22,31 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|string',
-            'content'=>'required|string',
-            'preview_image'=>'required|file',
-            'main_image'=>'required|file',
-            'category_id'=>'required|integer|exists:categories,id',
-            'tag_ids'=>'nullable|array',
-            'tag_ids.*'=>'nullable|integer|exists:tags,id',
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'preview_image' => 'required|file',
+            'main_image' => 'required|file',
+            'category_id' => 'required|integer|exists:categories,id',
+            'tag_ids' => 'nullable|array',
+            'tag_ids.*' => 'nullable|integer|exists:tags,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Це поле обов\'язкове для заповнення',
+            'title.string' => 'Тут повинен бути текст',
+            'content.required' => 'Це поле обов\'язкове для заповнення',
+            'content.string' => 'Тут повинен бути текст',
+            'preview_image.required' => 'Це поле обов\'язкове для заповнення',
+            'preview_image.file' => 'Тут повинено бути зображення',
+            'main_image.required' => 'Це поле обов\'язкове для заповнення',
+            'main_image.file' => 'Тут повинено бути зображення',
+            'category_id.required' => 'Тут повинено бути зображення',
+            'category_id.integer' => 'Виберіть категорію з існуючих',
+            'category_id.exists' => 'Виберіть категорію з існуючих',
+            'tag_ids.array' => 'Проблема з вибором тегу',
         ];
     }
 }
